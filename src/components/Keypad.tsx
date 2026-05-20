@@ -2,13 +2,15 @@ import { ButtonGrid } from './ButtonGrid'
 import { CalcButton } from './CalcButton'
 import { KEYPAD_LAYOUT } from './keypadLayout'
 
-const noop = () => {}
+type KeypadProps = {
+  onKey: (label: string) => void
+}
 
-export function Keypad() {
+export function Keypad({ onKey }: KeypadProps) {
   return (
     <ButtonGrid>
       {KEYPAD_LAYOUT.map((key) => (
-        <CalcButton key={key.label} label={key.label} variant={key.variant} onClick={noop} />
+        <CalcButton key={key.label} label={key.label} variant={key.variant} onClick={() => onKey(key.label)} />
       ))}
     </ButtonGrid>
   )
