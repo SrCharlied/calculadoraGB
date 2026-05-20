@@ -4,12 +4,18 @@
   --gb-shell: #cdd6a0;
   --gb-shell-dark: #8a9367;
   --gb-screen: #9bbc0f;
+  --gb-screen-deep: #7a9c0c;
   --gb-screen-dark: #0f380f;
   --gb-key: #2a2d3a;
   --gb-key-shadow: #14161e;
   --gb-op: #b03060;
+  --gb-op-shadow: #6a1c3a;
   --gb-equals: #d62828;
+  --gb-equals-shadow: #7b1313;
   --gb-clear: #f4a261;
+  --gb-clear-shadow: #a35d1f;
+  --gb-extra: #4a90a4;
+  --gb-extra-shadow: #245766;
 }
 
 * { box-sizing: border-box; }
@@ -21,7 +27,10 @@ html, body, #root {
 }
 
 body {
-  background: radial-gradient(circle at 30% 20%, #2b3147, #0f1320 70%);
+  background:
+    radial-gradient(circle at 30% 20%, #2b3147, transparent 60%),
+    radial-gradient(circle at 70% 80%, #1d1633, transparent 60%),
+    #0f1320;
   color: #e6e6e6;
   display: flex;
   align-items: center;
@@ -33,11 +42,12 @@ body {
   background: linear-gradient(160deg, var(--gb-shell), var(--gb-shell-dark));
   border-radius: 24px 24px 60px 24px;
   padding: 22px 18px 28px;
-  width: 320px;
+  width: min(340px, 100%);
   box-shadow:
     0 18px 40px rgba(0, 0, 0, 0.55),
     inset 0 -4px 0 rgba(0, 0, 0, 0.2),
     inset 0 2px 0 rgba(255, 255, 255, 0.35);
+  position: relative;
 }
 
 .brand {
@@ -52,7 +62,7 @@ body {
 
 .display {
   display: block;
-  background: linear-gradient(180deg, var(--gb-screen), #7a9c0c);
+  background: linear-gradient(180deg, var(--gb-screen), var(--gb-screen-deep));
   color: var(--gb-screen-dark);
   font-family: 'Courier New', monospace;
   font-size: 36px;
@@ -62,11 +72,14 @@ body {
   padding: 18px 16px;
   border-radius: 8px;
   border: 4px solid #3a3f2a;
-  box-shadow: inset 0 4px 12px rgba(0, 0, 0, 0.3);
+  box-shadow:
+    inset 0 4px 12px rgba(0, 0, 0, 0.3),
+    inset 0 0 0 2px rgba(15, 56, 15, 0.15);
   min-height: 72px;
   margin-bottom: 18px;
   overflow: hidden;
   text-shadow: 0 0 2px rgba(15, 56, 15, 0.5);
+  line-height: 1;
 }
 
 .button-grid {
@@ -88,16 +101,49 @@ body {
   box-shadow:
     0 4px 0 var(--gb-key-shadow),
     0 6px 10px rgba(0, 0, 0, 0.35);
-  transition: transform 0.05s ease, box-shadow 0.05s ease;
+  transition: transform 80ms ease, box-shadow 80ms ease, filter 80ms ease;
+  user-select: none;
 }
+
+.button:hover { filter: brightness(1.1); }
+.button:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
 
 .button:active {
   transform: translateY(3px);
   box-shadow: 0 1px 0 var(--gb-key-shadow), 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.button.op { background: linear-gradient(180deg, var(--gb-op), #6a1c3a); }
-.button.equals { background: linear-gradient(180deg, var(--gb-equals), #7b1313); }
-.button.clear { background: linear-gradient(180deg, var(--gb-clear), #a35d1f); color: #2b1d0a; }
-.button.extra { background: linear-gradient(180deg, #4a90a4, #245766); }
+.button.op {
+  background: linear-gradient(180deg, var(--gb-op), var(--gb-op-shadow));
+  box-shadow: 0 4px 0 var(--gb-op-shadow), 0 6px 10px rgba(0, 0, 0, 0.35);
+}
+
+.button.equals {
+  background: linear-gradient(180deg, var(--gb-equals), var(--gb-equals-shadow));
+  box-shadow: 0 4px 0 var(--gb-equals-shadow), 0 6px 10px rgba(0, 0, 0, 0.35);
+}
+
+.button.clear {
+  background: linear-gradient(180deg, var(--gb-clear), var(--gb-clear-shadow));
+  color: #2b1d0a;
+  box-shadow: 0 4px 0 var(--gb-clear-shadow), 0 6px 10px rgba(0, 0, 0, 0.35);
+}
+
+.button.extra {
+  background: linear-gradient(180deg, var(--gb-extra), var(--gb-extra-shadow));
+  box-shadow: 0 4px 0 var(--gb-extra-shadow), 0 6px 10px rgba(0, 0, 0, 0.35);
+}
+
 .button.zero { grid-column: span 2; }
+
+@media (max-width: 360px) {
+  body { padding: 12px; }
+  .calculator { padding: 16px 12px 22px; }
+  .display { font-size: 30px; min-height: 60px; padding: 14px 12px; }
+  .button { font-size: 18px; padding: 12px 0; }
+  .button-grid { gap: 8px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button { transition: none; }
+}

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="10" fill="#cdd6a0"/>
+  <rect x="10" y="8" width="44" height="18" rx="3" fill="#9bbc0f" stroke="#0f380f" stroke-width="2"/>
+  <text x="50" y="22" font-family="Courier New, monospace" font-size="10" font-weight="700" fill="#0f380f" text-anchor="end">99</text>
+  <circle cx="18" cy="38" r="5" fill="#2a2d3a"/>
+  <circle cx="32" cy="38" r="5" fill="#2a2d3a"/>
+  <circle cx="46" cy="38" r="5" fill="#b03060"/>
+  <circle cx="18" cy="52" r="5" fill="#2a2d3a"/>
+  <circle cx="32" cy="52" r="5" fill="#2a2d3a"/>
+  <circle cx="46" cy="52" r="5" fill="#d62828"/>
+</svg>
